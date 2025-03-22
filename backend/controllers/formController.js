@@ -1,4 +1,4 @@
-const Form = require("../models/form");
+const Form = require("../models/Form");
 
 // Get all forms
 exports.getAllForm = async (req, res) => {
