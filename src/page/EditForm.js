@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getFormById, updateForm } from "../service/oprations/formApi";
-import { FaTrash } from "react-icons/fa";
 import toast from "react-hot-toast";
 
 const generateId = () => Math.random().toString(36).substr(2, 9);
@@ -147,10 +146,10 @@ const EditForm = () => {
   };
 
   // Delete a field (do not allow deletion of Title)
-  const handleDeleteField = (fieldId, fieldLabel) => {
-    if (fieldLabel.toLowerCase() === "title") return;
-    setFields((prevFields) => prevFields.filter((field) => field.id !== fieldId));
-  };
+  // const handleDeleteField = (fieldId, fieldLabel) => {
+  //   if (fieldLabel.toLowerCase() === "title") return;
+  //   setFields((prevFields) => prevFields.filter((field) => field.id !== fieldId));
+  // };
 
   // Toggle the input type buttons visibility
   const handleToggleInputOptions = () => {
@@ -161,7 +160,7 @@ const EditForm = () => {
   const handleAddInput = (type) => {
     const newField = {
       id: generateId(),
-      label: `New ${type}`,
+      label: `${type}`,
       type: type.toLowerCase(),
       value: "",
       isEditing: false,
@@ -252,13 +251,6 @@ const EditForm = () => {
                     className="mt-2 border border-gray-300 rounded p-1 focus:outline-none focus:ring-1 focus:ring-blue-400"
                   />
                 </div>
-                {/* Delete Field Icon (do not allow deletion of Title) */}
-                {field.label.toLowerCase() !== "title" && (
-                  <FaTrash
-                    className="text-red-500 ml-3 cursor-pointer"
-                    onClick={() => handleDeleteField(field.id, field.label)}
-                  />
-                )}
               </div>
             ))}
           </div>
